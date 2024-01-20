@@ -2,10 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import logo from "./logo.svg";
 
-interface DetailsProps {
-  open: boolean;
-}
-
+// styling
 const Image = styled.img`
   width: 100%;
   max-height: 50px;
@@ -17,11 +14,6 @@ const Card = styled.div`
   border-radius: 4px;
 `;
 
-const DetailsContainer = styled.div<DetailsProps>`
-  opacity: ${({ open }) => (open ? "1" : "0")};
-  transition: opacity 0.5s;
-`;
-
 const Button = styled.button`
   color: #fff01f;
   background-color: transparent;
@@ -31,6 +23,16 @@ const Button = styled.button`
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+`;
+
+// details animation
+interface DetailsProps {
+  open: boolean;
+}
+
+const DetailsContainer = styled.div<DetailsProps>`
+  opacity: ${({ open }) => (open ? "1" : "0")};
+  transition: opacity 0.5s;
 `;
 
 const Details = () => {

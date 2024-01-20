@@ -52,6 +52,7 @@ const AnimationDiv = styled.div<AnimationProps>`
 
 const FullHeightView = styled.div`
   height: 100vh;
+  background-color: red;
 `;
 
 const Body = styled.div`
@@ -67,11 +68,11 @@ const checkInView = (ref: RefObject<HTMLElement>) => {
 
 function useOnScreen(ref: RefObject<HTMLElement>) {
   const [isOnScreen, setIsOnScreen] = useState(false);
+  const setIsOnScreenOnScroll = () => {
+    const visible = checkInView(ref);
+    setIsOnScreen(visible);
+  };
   useEffect(() => {
-    const setIsOnScreenOnScroll = () => {
-      const visible = checkInView(ref);
-      setIsOnScreen(visible);
-    };
     setIsOnScreenOnScroll();
     document.addEventListener("scroll", setIsOnScreenOnScroll);
     return () => {
@@ -109,9 +110,9 @@ const App = () => {
       </FullHeightView>
 
       <Row>
-        {Array.from(Array(20).keys()).map((it) => {
+        {Array.from(Array(10).keys()).map((it) => {
           return (
-            <AnimationContainer $delayinms={it * 250} key={`container-${it}`}>
+            <AnimationContainer $delayinms={it * 100} key={`container-${it}`}>
               <Card>
                 <Image src={logo} alt="React Logo" />
                 <h1>React</h1>
