@@ -63,6 +63,7 @@ const Body = styled.div`
 const checkInView = (ref: RefObject<HTMLElement>) => {
   if (!ref.current) return false;
   const rect = ref.current.getBoundingClientRect();
+  console.log(`rect: top: ${rect.top} bottom: ${rect.bottom} `);
   return rect.top < window.innerHeight && rect.bottom >= 0;
 };
 
@@ -122,6 +123,11 @@ const App = () => {
           );
         })}
       </Row>
+      <FullHeightView>
+        <Row>
+          <Details />
+        </Row>
+      </FullHeightView>
     </Body>
   );
 };
